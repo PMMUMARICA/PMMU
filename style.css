@@ -1,0 +1,200 @@
+/* CONFIGURAÇÃO GERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #050816;
+    color: white;
+    line-height: 1.6;
+}
+
+/* HEADER / BARRA DE NAVEGAÇÃO */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #0b122b;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #1e293b;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #22c55e;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #22c55e;
+}
+
+/* SEÇÃO HERO (PRINCIPAL) */
+.hero {
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(180deg, #0b122b 0%, #050816 100%);
+}
+
+.hero h2 {
+    font-size: 44px;
+    max-width: 800px;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 600px;
+    opacity: 0.8;
+    margin-bottom: 35px;
+}
+
+/* BOTÕES */
+button {
+    background: #22c55e;
+    color: #050816;
+    border: none;
+    padding: 15px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.3s;
+}
+
+button:hover {
+    background: #16a34a;
+    transform: translateY(-2px);
+}
+
+.btn-branco {
+    background: white;
+    color: #050816;
+}
+
+.btn-branco:hover {
+    background: #e2e8f0;
+}
+
+/* SEÇÃO DE SERVIÇOS (CARDS) */
+.servicos {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.titulo-secao {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.container-cards {
+    display: block;
+    text-align: center;
+}
+
+.card {
+    background: #0b122b;
+    border: 1px solid #1e293b;
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 350px;
+    margin: 15px auto;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+}
+
+.icone {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.card h4 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: #22c55e;
+}
+
+.card p {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 20px;
+    height: 80px;
+}
+
+.card button {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+/* SEÇÃO MOTOBOYS */
+.motoboys {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.alerta-motoboy {
+    background: #1e293b;
+    border-left: 5px solid #22c55e;
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.alerta-motoboy h3 {
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.alerta-motoboy p {
+    margin-bottom: 25px;
+    opacity: 0.9;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* RODAPÉ */
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #0b122b;
+    font-size: 14px;
+    opacity: 0.6;
+    border-top: 1px solid #1e293b;
+    margin-top: 40px;
+}
