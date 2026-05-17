@@ -5,11 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PMMU Mobility - Maricá</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(() => console.log('Aplicativo Pronto para Instalação!'))
+                .catch(err => console.log('Erro ao registrar app:', err));
+        }
+    </script>
 </head>
 <body>
 
     <header>
-        <div class="logo">MF Mobility</div>
+        <div class="logo">PMMU Mobility</div>
         <nav>
             <a href="#inicio">Início</a>
             <a href="#servicos">Serviços</a>
