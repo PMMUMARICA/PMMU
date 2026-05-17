@@ -1,31 +1,57 @@
-console.log("PPMU Mobility iniciado")
-// Substitua o número abaixo pelo seu número de atendimento do WhatsApp
-// Coloque o código do país (55) + DDD (21) + seu número, tudo junto sem espaços ou traços.
-const NUMERO_WHATSAPP = "5521996457245"; 
+// CONFIGURAÇÃO REAL: Mude para o seu número de atendimento (Código do país 55 + DDD 21 + Número)
+const NUMERO_WHATSAPP = "5521999999999"; 
 
 function chamarNoWhats(tipoServico) {
     let mensagem = "";
 
-    switch(tipoServico) {
-        case "Passageiro":
-            mensagem = "Olá! Gostaria de solicitar um motoboy para uma corrida de passageiro em Maricá.";
-            break;
-        case "Entrega":
-            mensagem = "Olá! Preciso de um motoboy para realizar uma entrega comercial.";
-            break;
-        case "Coleta":
-            mensagem = "Olá! Preciso que um motoboy busque/colete um documento ou objeto para mim.";
-            break;
-        case "Cadastro Motoboy":
-            mensagem = "E aí! Sou motoboy aqui em Maricá e gostaria de fazer o meu cadastro para rodar com o MF Mobility.";
-            break;
-        default:
-            mensagem = "Olá! Gostaria de mais informações sobre os serviços de corrida e entrega da MF Mobility em Maricá.";
+    if (tipoServico === "Passageiro") {
+        let origem = prompt("Qual o bairro de Origem? (Ex: Centro, Itaipuaçu, Inoã...)");
+        let destino = prompt("Qual o bairro de Destino? (Ex: Cordeirinho, Ponta Negra...)");
+        
+        if (!origem || !destino) {
+            alert("Por favor, informe a origem e o destino para solicitar a moto!");
+            return;
+        }
+        mensagem = `🏍️ *NOVA CORRIDA (Passageiro)*\n\n• *De:* ${origem}\n• *Para:* ${destino}\n\nAgilize um motoboy para mim, por favor!`;
+
+    } else if (tipoServico === "Entrega") {
+        let comercio = prompt("Qual o nome do seu comércio ou restaurante?");
+        let bairroEntrega = prompt("Para qual bairro de Maricá é a entrega?");
+        
+        if (!comercio || !bairroEntrega) {
+            alert("Por favor, preencha os dados da entrega!");
+            return;
+        }
+        mensagem = `📦 *SOLICITAÇÃO DE ENTREGA*\n\n• *Estabelecimento:* ${comercio}\n• *Destino da Entrega:* ${bairroEntrega}\n\nPreciso de um motoboy para levar um pedido.`;
+
+    } else if (tipoServico === "Coleta") {
+        let oQueE = prompt("O que precisa ser coletado? (Ex: Chave, Documento, Maquininha...)");
+        let localColeta = prompt("Onde o motoboy deve retirar? (Bairro/Ponto de referência)");
+        
+        if (!oQueE || !localColeta) {
+            alert("Por favor, informe o objeto e o local de coleta!");
+            return;
+        }
+        mensagem = `📋 *SERVIÇO DE COLETA / EXPEDIENTE*\n\n• *Item:* ${oQueE}\n• *Retirar em:* ${localColeta}\n\nPreciso de um motoboy para coletar esse item urgência.`;
+
+    } else if (tipoServico === "Cadastro Motoboy") {
+        let nome = prompt("Qual o seu nome completo?");
+        let bairroMora = prompt("Em qual bairro de Maricá você mora?");
+        let moto = prompt("Qual a sua moto? (Ex: Fan 125, Titan 160...)");
+        
+        if (!nome || !bairroMora) {
+            alert("Por favor, preencha seu nome e bairro para o cadastro!");
+            return;
+        }
+        mensagem = `🦅 *CADASTRO DE MOTOBOY*\n\n• *Nome:* ${nome}\n• *Bairro:* ${bairroMora}\n• *Veículo:* ${moto}\n\nQuero me cadastrar para rodar e fazer entregas com o MF Mobility!`;
+
+    } else {
+        mensagem = "Olá! Gostaria de saber mais sobre como funciona o sistema de corridas e entregas da MF Mobility aqui em Maricá.";
     }
 
-    // Codifica o texto para formato de URL do WhatsApp
+    // Gerar link do WhatsApp formatado
     const linkZap = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
     
-    // Abre o WhatsApp numa nova aba
+    // Abre o WhatsApp
     window.open(linkZap, '_blank');
 }
