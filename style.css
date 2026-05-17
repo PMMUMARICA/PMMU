@@ -238,3 +238,25 @@ footer {
     opacity: 0.5;
     border-top: 1px solid #1e293b;
 }
+/* BARRA DE STATUS ONLINE */
+.status-barra {
+    background: #1e293b;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: 1px solid #22c55e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.ponto-verde {
+    width: 10px;
+    height: 10px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px #22c55e;
+}
