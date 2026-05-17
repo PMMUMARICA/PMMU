@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MF Mobility - Área do Motoboy</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .box-app { background: #0b122b; max-width: 500px; margin: 40px auto; padding: 30px; border-radius: 16px; border: 1px solid #1e293b; }
+        .input-app { width: 100%; padding: 12px; margin: 10px 0; background: #050816; border: 1px solid #1e293b; color: white; border-radius: 8px; }
+        label { font-size: 14px; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">MF Mobility 🦅 PILOTOS</div>
+        <a href="index.html" style="color: white; text-decoration: none;">Voltar</a>
+    </header>
+
+    <div class="box-app">
+        <h3 style="color: #22c55e; text-align: center; margin-bottom: 10px;">🦅 Portal do Motoboy Parceiro</h3>
+        <p style="opacity: 0.7; text-align: center; margin-bottom: 20px;">Envie seus dados para liberação da sua conta</p>
+        
+        <form id="formCadastroMoto">
+            <label>Nome Completo</label>
+            <input type="text" class="input-app" id="motoNome" required>
+            
+            <label>WhatsApp de Trabalho</label>
+            <input type="tel" class="input-app" id="motoWhats" placeholder="(21) 9XXXX-XXXX" required>
+            
+            <label>Modelo e Placa da Moto</label>
+            <input type="text" class="input-app" id="motoDados" placeholder="Ex: Honda Fan 125 - Placa XXX-0X00" required>
+            
+            <label>Bairro Base que costuma rodar</label>
+            <input type="text" class="input-app" id="motoBairro" placeholder="Ex: Centro / Inoã / Ponta Negra" required>
+
+            <button type="submit" style="width: 100%; margin-top: 15px; background: white; color: #050816;">Enviar Documentação</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('formCadastroMoto').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('motoNome').value;
+            const whats = document.getElementById('motoWhats').value;
+            const moto = document.getElementById('motoDados').value;
+            const bairro = document.getElementById('motoBairro').value;
+            
+            const msg = `🦅 *SOLICITAÇÃO DE CADASTRO MOTOBOY*\n\n• *Nome:* ${nome}\n• *WhatsApp:* ${whats}\n• *Veículo/Placa:* ${moto}\n• *Região Base:* ${bairro}`;
+            window.open(`https://wa.me/5521999999999?text=${encodeURIComponent(msg)}`, '_blank');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MF Mobility - Área do Cliente</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .box-app { background: #0b122b; max-width: 500px; margin: 40px auto; padding: 30px; border-radius: 16px; border: 1px solid #22c55e; text-align: center;}
+        .input-app { width: 100%; padding: 12px; margin: 10px 0; background: #050816; border: 1px solid #1e293b; color: white; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">MF Mobility 📱 PASSO A PASSO</div>
+        <a href="index.html" style="color: white; text-decoration: none;">Voltar</a>
+    </header>
+
+    <div class="box-app">
+        <h3>📱 Aplicativo do Cliente</h3>
+        <p style="opacity: 0.7; margin-bottom: 20px;">Faça seu login ou peça direto</p>
+        
+        <form id="formPedidoReal">
+            <input type="text" class="input-app" id="nomeCli" placeholder="Seu Nome" required>
+            <input type="tel" class="input-app" id="telCli" placeholder="Seu Celular / WhatsApp" required>
+            <input type="text" class="input-app" id="ruaOrigem" placeholder="Endereço de Origem (Ex: Rua 34, Itaipuaçu)" required>
+            <input type="text" class="input-app" id="ruaDestino" placeholder="Endereço de Destino (Ex: Rodoviária, Centro)" required>
+            
+            <button type="submit" style="width: 100%; margin-top: 15px;">Chamar Motoboy Agora</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('formPedidoReal').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nomeCli').value;
+            const tel = document.getElementById('telCli').value;
+            const origem = document.getElementById('ruaOrigem').value;
+            const destino = document.getElementById('ruaDestino').value;
+            
+            const msg = `📱 *PEDIDO VIA APP CLIENTE*\n\n• *Cliente:* ${nome}\n• *Contato:* ${tel}\n• *Retirada:* ${origem}\n• *Destino:* ${destino}`;
+            window.open(`https://wa.me/5521999999999?text=${encodeURIComponent(msg)}`, '_blank');
+        });
+    </script>
+</body>
+</html>
