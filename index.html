@@ -13,6 +13,7 @@
         <nav>
             <a href="#inicio">Início</a>
             <a href="#servicos">Serviços</a>
+            <a href="#precos">Estimativa de Preços</a>
             <a href="#motoboys">Para Motoboys</a>
         </nav>
     </header>
@@ -24,7 +25,7 @@
     <section class="hero" id="inicio">
         <h2>Mobilidade urbana inteligente da sua cidade</h2>
         <p>Corridas, entregas rápidas e entregas de quentinhas com quem mais conhece as ruas de Maricá.</p>
-        <button onclick="chamarNoWhats('Geral')">Chamar no WhatsApp</button>
+        <button onclick="abrirModal('Passageiro')">Chamar no WhatsApp</button>
     </section>
 
     <section class="vantagens">
@@ -54,7 +55,7 @@
                     <h4>Passageiros</h4>
                     <p>Precisa ir ao Centro, Itaipuaçu, Ponta Negra ou Cordeirinho? Vá de moto de forma rápida, segura e com preço justo local.</p>
                 </div>
-                <button onclick="chamarNoWhats('Passageiro')">Pedir Moto</button>
+                <button onclick="abrirModal('Passageiro')">Pedir Moto</button>
             </div>
 
             <div class="card">
@@ -63,7 +64,7 @@
                     <h4>Entregas Comerciais</h4>
                     <p>Parceria forte com restaurantes de quentinhas, lanchonetes e comércios de Maricá. Seu produto chega rápido e intacto.</p>
                 </div>
-                <button onclick="chamarNoWhats('Entrega')">Pedir Entrega</button>
+                <button onclick="abrirModal('Entrega')">Pedir Entrega</button>
             </div>
 
             <div class="card">
@@ -72,9 +73,47 @@
                     <h4>Documentos e Objetos</h4>
                     <p>Esqueceu as chaves ou precisa enviar um documento importante? Coletamos e entregamos com total agilidade.</p>
                 </div>
-                <button onclick="chamarNoWhats('Coleta')">Solicitar Coleta</button>
+                <button onclick="abrirModal('Coleta')">Solicitar Coleta</button>
             </div>
 
+        </div>
+    </section>
+
+    <section class="secao-precos" id="precos">
+        <h3 class="titulo-secao">Estimativa de Tarifa Local</h3>
+        <p style="text-align: center; margin-bottom: 30px; opacity: 0.7;">Valores médios sugeridos para corridas básicas de passageiros:</p>
+        <div class="tabela-responsiva">
+            <table class="tabela-precos">
+                <thead>
+                    <tr>
+                        <th>Origem / Destino</th>
+                        <th>Distância Média</th>
+                        <th>Valor Estimado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Centro ↔ Inoã</td>
+                        <td>Aprox. 13km</td>
+                        <td class="preco-destaque">R$ 18,00</td>
+                    </tr>
+                    <tr>
+                        <td>Centro ↔ Itaipuaçu (Praia)</td>
+                        <td>Aprox. 22km</td>
+                        <td class="preco-destaque">R$ 28,00</td>
+                    </tr>
+                    <tr>
+                        <td>Centro ↔ Cordeirinho</td>
+                        <td>Aprox. 15km</td>
+                        <td class="preco-destaque">R$ 20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Centro ↔ Ponta Negra</td>
+                        <td>Aprox. 24km</td>
+                        <td class="preco-destaque">R$ 30,00</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
@@ -82,9 +121,19 @@
         <div class="alerta-motoboy">
             <h3>É Motoboy em Maricá?</h3>
             <p>Aumente os seus ganhos diários fazendo corridas e entregas de forma totalmente independente nas suas horas livres.</p>
-            <button class="btn-branco" onclick="chamarNoWhats('Cadastro Motoboy')">Cadastrar Agora</button>
+            <button class="btn-branco" onclick="abrirModal('Motoboy')">Cadastrar Agora</button>
         </div>
     </section>
+
+    <div id="modalFormulario" class="modal">
+        <div class="modal-conteudo">
+            <span class="fechar-modal" onclick="fecharModal()">&times;</span>
+            <h4 id="modalTitulo">Solicitar Serviço</h4>
+            <div id="camposFormulario">
+                </div>
+            <button class="btn-enviar-modal" onclick="processarFormulario()">Confirmar e Chamar no WhatsApp</button>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2026 MF Mobility - Desenvolvido para a comunidade de Maricá.</p>
