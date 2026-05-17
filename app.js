@@ -1,57 +1,87 @@
-// CONFIGURAÇÃO REAL: Mude para o seu número de atendimento (Código do país 55 + DDD 21 + Número)
-const NUMERO_WHATSAPP = "5521999999999"; 
+const NUMERO_WHATSAPP = "5521996457245"; // COLOQUE SEU NÚMERO AQUI
+let servicoAtual = "";
 
-function chamarNoWhats(tipoServico) {
+function abrirModal(tipo) {
+    servicoAtual = tipo;
+    const modal = document.getElementById("modalFormulario");
+    const titulo = document.getElementById("modalTitulo");
+    const campos = document.getElementById("camposFormulario");
+    
+    campos.innerHTML = ""; // Limpa campos antigos
+    modal.style.display = "flex";
+
+    if (tipo === "Passageiro") {
+        titulo.innerText = "📍 Solicitar Corrida";
+        campos.innerHTML = `
+            <div class="campo-grupo"><label>Seu Nome</label><input type="text" id="nomeCliente" placeholder="Ex: João"></div>
+            <div class="campo-grupo"><label>Bairro de Origem</label><input type="text" id="origem" placeholder="Ex: Centro"></div>
+            <div class="campo-grupo"><label>Bairro de Destino</label><input type="text" id="destino" placeholder="Ex: Itaipuaçu"></div>
+        `;
+    } else if (tipo === "Entrega") {
+        titulo.innerText = "📦 Solicitar Entrega Comercial";
+        campos.innerHTML = `
+            <div class="campo-grupo"><label>Nome do Estabelecimento</label><input type="text" id="comercio" placeholder="Ex: Quentinhas da Maria"></div>
+            <div class="campo-grupo"><label>Bairro de Entrega</label><input type="text" id="bairroEntrega" placeholder="Ex: Cordeirinho"></div>
+        `;
+    } else if (tipo === "Coleta") {
+        titulo.innerText = "📋 Solicitar Coleta de Objeto";
+        campos.innerHTML = `
+            <div class="campo-grupo"><label>O que precisa buscar?</label><input type="text" id="objeto" placeholder="Ex: Chave / Maquininha"></div>
+            <div class="campo-grupo"><label>Onde retirar? (Bairro)</label><input type="text" id="retirada" placeholder="Ex: Inoã"></div>
+        `;
+    } else if (tipo === "Motoboy") {
+        titulo.innerText = "🦅 Cadastro de Motoboy";
+        campos.innerHTML = `
+            <div class="campo-grupo"><label>Nome Completo</label><input type="text" id="nomeMoto" placeholder="Seu nome"></div>
+            <div class="campo-grupo"><label>Bairro onde Mora</label><input type="text" id="bairroMoto" placeholder="Ex: Ponta Negra"></div>
+            <div class="campo-grupo"><label>Modelo da Moto</label><input type="text" id="veiculoMoto" placeholder="Ex: Fan 125cc"></div>
+        `;
+    }
+}
+
+function fecharModal() {
+    document.getElementById("modalFormulario").style.display = "none";
+}
+
+function processarFormulario() {
     let mensagem = "";
 
-    if (tipoServico === "Passageiro") {
-        let origem = prompt("Qual o bairro de Origem? (Ex: Centro, Itaipuaçu, Inoã...)");
-        let destino = prompt("Qual o bairro de Destino? (Ex: Cordeirinho, Ponta Negra...)");
-        
-        if (!origem || !destino) {
-            alert("Por favor, informe a origem e o destino para solicitar a moto!");
-            return;
-        }
-        mensagem = `🏍️ *NOVA CORRIDA (Passageiro)*\n\n• *De:* ${origem}\n• *Para:* ${destino}\n\nAgilize um motoboy para mim, por favor!`;
-
-    } else if (tipoServico === "Entrega") {
-        let comercio = prompt("Qual o nome do seu comércio ou restaurante?");
-        let bairroEntrega = prompt("Para qual bairro de Maricá é a entrega?");
-        
-        if (!comercio || !bairroEntrega) {
-            alert("Por favor, preencha os dados da entrega!");
-            return;
-        }
-        mensagem = `📦 *SOLICITAÇÃO DE ENTREGA*\n\n• *Estabelecimento:* ${comercio}\n• *Destino da Entrega:* ${bairroEntrega}\n\nPreciso de um motoboy para levar um pedido.`;
-
-    } else if (tipoServico === "Coleta") {
-        let oQueE = prompt("O que precisa ser coletado? (Ex: Chave, Documento, Maquininha...)");
-        let localColeta = prompt("Onde o motoboy deve retirar? (Bairro/Ponto de referência)");
-        
-        if (!oQueE || !localColeta) {
-            alert("Por favor, informe o objeto e o local de coleta!");
-            return;
-        }
-        mensagem = `📋 *SERVIÇO DE COLETA / EXPEDIENTE*\n\n• *Item:* ${oQueE}\n• *Retirar em:* ${localColeta}\n\nPreciso de um motoboy para coletar esse item urgência.`;
-
-    } else if (tipoServico === "Cadastro Motoboy") {
-        let nome = prompt("Qual o seu nome completo?");
-        let bairroMora = prompt("Em qual bairro de Maricá você mora?");
-        let moto = prompt("Qual a sua moto? (Ex: Fan 125, Titan 160...)");
-        
-        if (!nome || !bairroMora) {
-            alert("Por favor, preencha seu nome e bairro para o cadastro!");
-            return;
-        }
-        mensagem = `🦅 *CADASTRO DE MOTOBOY*\n\n• *Nome:* ${nome}\n• *Bairro:* ${bairroMora}\n• *Veículo:* ${moto}\n\nQuero me cadastrar para rodar e fazer entregas com o MF Mobility!`;
-
-    } else {
-        mensagem = "Olá! Gostaria de saber mais sobre como funciona o sistema de corridas e entregas da MF Mobility aqui em Maricá.";
+    if (servicoAtual === "Passageiro") {
+        const nome = document.getElementById("nomeCliente").value;
+        const de = document.getElementById("origem").value;
+        const para = document.getElementById("destino").value;
+        if(!de || !para) return alert("Preencha a origem e o destino!");
+        mensagem = `🏍️ *NOVA CORRIDA (Passageiro)*\n\n• *Nome:* ${nome || 'Não informado'}\n• *De:* ${de}\n• *Para:* ${para}`;
+    
+    } else if (servicoAtual === "Entrega") {
+        const loja = document.getElementById("comercio").value;
+        const destinoEntrega = document.getElementById("bairroEntrega").value;
+        if(!loja || !destinoEntrega) return alert("Preencha os campos!");
+        mensagem = `📦 *SOLICITAÇÃO DE ENTREGA*\n\n• *Estabelecimento:* ${loja}\n• *Destino:* ${destinoEntrega}`;
+    
+    } else if (servicoAtual === "Coleta") {
+        const item = document.getElementById("objeto").value;
+        const local = document.getElementById("retirada").value;
+        if(!item || !local) return alert("Preencha os campos!");
+        mensagem = `📋 *SERVIÇO DE COLETA*\n\n• *Item:* ${item}\n• *Retirar em:* ${local}`;
+    
+    } else if (servicoAtual === "Motoboy") {
+        const n = document.getElementById("nomeMoto").value;
+        const b = document.getElementById("bairroMoto").value;
+        const m = document.getElementById("veiculoMoto").value;
+        if(!n || !b) return alert("Preencha seu nome e bairro!");
+        mensagem = `🦅 *CADASTRO MOTOBOY*\n\n• *Nome:* ${n}\n• *Mora em:* ${b}\n• *Moto:* ${m || 'Não informada'}`;
     }
 
-    // Gerar link do WhatsApp formatado
     const linkZap = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
-    
-    // Abre o WhatsApp
     window.open(linkZap, '_blank');
+    fecharModal();
+}
+
+// Fecha o modal se clicar fora da janelinha
+window.onclick = function(event) {
+    const modal = document.getElementById("modalFormulario");
+    if (event.target == modal) {
+        fecharModal();
+    }
 }
